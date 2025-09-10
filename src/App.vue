@@ -1,6 +1,10 @@
 <template>
+  <div class="background-layer"></div>
   <v-app>
-    <router-view />
+    <v-main>
+      <router-view />
+    </v-main>
+    <div class=""></div>
   </v-app>
 </template>
 

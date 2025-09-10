@@ -2,7 +2,6 @@
   <div class="d-flex align-center justify-space-between mb-4">
     <p class="heading-label">បញ្ចេញមតិ ({{ comments.length }})</p>
     <v-btn
-      color="primary"
       @click="showCommentForm = !showCommentForm"
       prepend-icon="mdi-comment-plus"
       variant="text"
@@ -130,7 +129,6 @@
                 </v-btn>
                 <v-btn
                   size="small"
-                  color="primary"
                   variant="text"
                   :disabled="!replyText.trim()"
                   @click="addReply(comment.id)"

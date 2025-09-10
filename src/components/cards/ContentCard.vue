@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="mx-auto content-card">
+    class="mx-auto content-card liquid-glass rounded-xl">
     <v-card-item
       class="card-content-text"
       style="background-image: url('https://zone-ui.vercel.app/assets/images/travel/travel-6.webp'); background-size: cover; background-position: center; position: relative;"
@@ -55,16 +55,6 @@ import {useRouter} from "vue-router"
 const router = useRouter()
 </script>
 <style scoped>
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: #000000;
-  background: linear-gradient(90deg,rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.54) 36%, rgba(255, 255, 255, 0) 100%);
-
-}
 .card-content-text{
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);

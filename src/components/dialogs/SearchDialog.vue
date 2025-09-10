@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="open" max-width="500" persistent>
-    <v-card>
+    <v-card class="glass-card rounded-xl">
       <v-text-field
         v-model="search"
         label="ស្វែងរក..."
@@ -22,7 +22,7 @@
           </v-chip>
         </div>
         <div>
-          <v-list>
+          <v-list class="bg-transparent">
             <v-list-item
               v-for="result in filteredResults"
               :key="result.id"

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container max-width="1200">
    <ImageGrid/>
     <div class="d-flex align-center justify-space-between gap-2 my-6">
       <div class="d-flex flex-column">
@@ -18,13 +18,11 @@
         <v-btn
           :icon="isFavorite ? 'mdi-heart' : 'mdi-heart-outline'"
           variant="text"
-          color="red"
           @click="toggleFavorite"
         />
         <v-btn
           icon="mdi-share"
           variant="text"
-          color="primary"
           @click="shareContent"
         />
       </div>
