@@ -4,6 +4,8 @@ import Components from 'unplugin-vue-components/vite'
 import Fonts from 'unplugin-fonts/vite'
 import Layouts from 'vite-plugin-vue-layouts-next'
 import Vue from '@vitejs/plugin-vue'
+import Pages from 'vite-plugin-pages'
+
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
@@ -17,6 +19,7 @@ export default defineConfig({
   plugins: [
     VueRouter(),
     Layouts(),
+    Pages(),
     Vue({
       template: { transformAssetUrls },
     }),

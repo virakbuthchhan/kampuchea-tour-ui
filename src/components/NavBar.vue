@@ -5,6 +5,7 @@ import { useTheme } from 'vuetify'
 
 import SearchDialog from "@/components/dialogs/SearchDialog.vue";
 import {useSearchStore} from "@/stores/searchStore.js";
+import UserAvatar from "@/components/nav/UserAvatar.vue";
 
 const router = useRouter();
 const store = useSearchStore();
@@ -18,7 +19,7 @@ const toggleTheme = () => {
 </script>
 
 <template>
-  <v-app-bar class="elevation-3 px-2 liquid-glass2">
+  <v-app-bar class="elevation-0 px-2 liquid-glass">
     <template v-slot:prepend>
       <v-icon>mdi-flag-triangle</v-icon>
     </template>
@@ -46,6 +47,7 @@ const toggleTheme = () => {
        <v-btn prepend-icon="mdi-login-variant" @click="router.push('/auth')">
          <span class="btn-text">ចូលគណនី</span>
        </v-btn>
+       <user-avatar />
      </template>
     </template>
   </v-app-bar>

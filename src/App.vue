@@ -1,5 +1,6 @@
 <template>
   <div class="background-layer"></div>
+  <loading-dialog/>
   <v-app>
     <v-main>
       <router-view />
@@ -10,4 +11,5 @@
 
 <script setup>
   //
+import LoadingDialog from "@/components/dialogs/LoadingDialog.vue";
 </script>

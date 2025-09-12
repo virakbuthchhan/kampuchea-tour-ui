@@ -4,17 +4,17 @@
       <v-avatar
         image="https://avatars.githubusercontent.com/u/149345575?v=4" size="100">
       </v-avatar>
-      <p class="heading-label mt-4 mb-2">ស្វាគមន៍មកកាន់គេហទំព័ររបស់ខ្ញុំ!</p>
-      <p class="mb-6">នេះគឺជាទំព័រដែលខ្ញុំបង្កើតឡើង ដើម្បីបង្ហាញពីជំនាញ និងគម្រោងរបស់ខ្ញុំ។ សូមរីករាយក្នុងការស្វែងរក!</p>
+      <p class="heading-label mt-4 mb-2">សួស្ដី បុត្រ</p>
+      <br/>
       <div class="d-flex gap-2">
-        <v-btn variant="text" class="liquid-glass" rounded prepend-icon="mdi-human-greeting-proximity"
+        <v-btn variant="text" class="liquid-glass" rounded prepend-icon="mdi-pencil"
+               @click="router.push('/content')"
+               target="_blank"
+        >បង្កើតមាតិការ</v-btn>
+        <v-btn variant="text" rounded class="liquid-glass" prepend-icon="mdi-account-circle"
                href="https://www.facebook.com/profile.php?id=crushbuth"
                target="_blank"
-        >តាមដាន</v-btn>
-        <v-btn variant="text" rounded class="liquid-glass" prepend-icon="mdi-share"
-               href="https://www.facebook.com/profile.php?id=crushbuth"
-               target="_blank"
-        >ចែករំលែក</v-btn>
+        >គណនី</v-btn>
       </div>
     </div>
     <br/>
@@ -49,21 +49,43 @@
 </template>
 
 <script setup>
+import {useRouter} from "vue-router";
 import StatisticCard from "@/components/me/StatisticCard.vue";
 import TableContent from "@/components/me/TableContent.vue";
 
 const showPassword = ref(false)
 const tab = ref('login')
+const router = useRouter()
 const files = [
   {
-    icon: 'mdi-human-greeting-proximity',
-    subtitle: 'អ្នកតាមដាន',
-    title: '200 នាក់',
+    icon: 'mdi-calendar',
+    subtitle: 'Jan 20, 2014',
+    title: 'កាលបរិច្ចេទធ្វើដំណើរ',
   },
   {
-    icon: 'mdi-note-search',
-    subtitle: 'មាតិការ',
-    title: '10 អត្ថបទ',
+    icon: 'mdi-account-circle-outline',
+    subtitle: 'បង រ៉ាន់ ខ្នងវាល',
+    title: 'សហគមន៍តំបន់',
+  },
+  {
+    icon: 'mdi-map-marker-outline',
+    subtitle: 'ភូមិ សូរិយា ឃុំតាសាល ស្រុកតាសាល ខេត្តកំពង់ស្ពឺ',
+    title: 'ទីកន្លែង',
+  },
+  {
+    icon: 'mdi-cellphone',
+    subtitle: '096 96 40 495',
+    title: 'ទំនាក់ទំនងសហគមន៍',
+  },
+  {
+    icon: 'mdi-clock-time-four-outline',
+    subtitle: '១យប់ ២ថ្ងៃ',
+    title: 'រយៈពេលដំណើរកំសាន្ត',
+  },
+  {
+    icon: 'mdi-hiking',
+    subtitle: 'ឡើងភ្នំ បោះតង់ លេងទឹកធ្លាក់',
+    title: 'សកម្មភាព',
   },
 ]
 

@@ -31,6 +31,10 @@
               />
               <v-btn block class="mt-4" size="large" variant="tonal">ចូលគណនី</v-btn>
             </v-form>
+            <br/>
+            <v-divider>ចូលតាម</v-divider>
+            <v-btn block class="mt-4" size="large" @click="login('google')" variant="outlined" prepend-icon="mdi-google">គណនី Google</v-btn>
+            <v-btn block class="mt-4" size="large" @click="login('github')" variant="outlined" prepend-icon="mdi-github">គណនី GitHub</v-btn>
           </v-tabs-window-item>
           <v-tabs-window-item value="register">
             <v-icon>mdi-flag-triangle</v-icon>
@@ -59,6 +63,10 @@
               />
               <v-btn block class="mt-4" size="large" variant="tonal">បង្កើតគណនី</v-btn>
             </v-form>
+            <br>
+            <v-divider>ចុះឈ្មោះតាម</v-divider>
+            <v-btn block class="mt-4" size="large" variant="outlined" prepend-icon="mdi-google">គណនី Google</v-btn>
+            <v-btn block class="mt-4" size="large" variant="outlined" prepend-icon="mdi-github">គណនី GitHub</v-btn>
           </v-tabs-window-item>
         </v-tabs-window>
       </v-card-text>
@@ -67,8 +75,15 @@
 </template>
 
 <script setup>
+import auth from "@/services/auth.js"
 const showPassword = ref(false)
 const tab = ref('login')
+
+const login = (provider) => {
+  auth.loginWithProvider(provider);
+}
+
+
 </script>
 <style scoped>
 .heading-label {

@@ -1,7 +1,7 @@
 <template>
   <v-footer
     app
-    class="liquid-glass bg-transparent"
+    class="bg-transparent elevation-0 px-2 liquid-glass"
     height="40"
   >
     <a

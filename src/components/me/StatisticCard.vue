@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="mx-auto"
+    class="mx-auto liquid-glass rounded-xl"
     max-width="368"
   >
     <v-card-item title="Florida">

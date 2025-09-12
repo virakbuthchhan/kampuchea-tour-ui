@@ -1,14 +1,15 @@
 <template>
   <v-table
+    class="liquid-glass bg-transparent rounded-xl"
     height="600px"
     fixed-header
   >
-    <thead>
+    <thead class="bg-transparent">
     <tr>
-      <th class="text-left">
+      <th class="text-left bg-transparent">
         មាតិការ
       </th>
-      <th class="text-left" width="40%">
+      <th class="text-left bg-transparent" width="40%">
         ចំណាប់អារម្មណ៍
       </th>
     </tr>

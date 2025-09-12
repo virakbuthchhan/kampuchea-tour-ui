@@ -1,5 +1,6 @@
 <template>
   <v-container max-width="1200">
+    <home-hero/>
     <v-row>
       <v-col cols="12" sm="12" md="6">
       <HomeCard />
@@ -61,6 +62,7 @@
 import NavBar from "@/components/NavBar.vue";
   import HomeCard from "@/components/cards/HomeCard.vue";
   import ContentCard from "@/components/cards/ContentCard.vue";
+  import HomeHero from "@/components/me/HomeHero.vue";
 </script>
 <style scoped>
 .heading-label {
