@@ -30,33 +30,30 @@
     </template>
   </div>
 </template>
-
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import auth from "@/services/auth.js"
-
-
+import { useAuthStore } from '@/stores/useAuthStore.js';
+const {setAuth} = useAuthStore();
 const error = ref(null);
 const user = ref(null);
 const router = useRouter();
 const loading = ref(false)
-
 
 onMounted(() => {
   const provider = router.currentRoute.value.params.provider;
   const urlParams = new URLSearchParams(window.location.search);
  // get all url query parameters
   const allParams = Object.fromEntries(urlParams.entries());
-  console.log('All URL Parameters:', allParams);
   const code = urlParams.get('code');
   // const code = router.currentRoute.value.query.code;
   if (provider && code) {
     loading.value = true
     auth.handleCallback(provider,allParams)
       .then(response => {
-        // user.value = response.data.user;
-        console.log(response);
+        const {user, token} = response
+        setAuth(token,user);
         // Redirect to dashboard or home page after successful login
         router.push('/');
       })

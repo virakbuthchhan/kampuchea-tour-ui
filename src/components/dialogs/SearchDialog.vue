@@ -110,4 +110,8 @@ const onSelect = (result) => {
 .highlight {
   background-color: yellow;
 }
+.glass-card{
+  box-shadow: inset 3px 3px 3px 0 rgba(255, 255, 255, 0.45),
+  inset -3px -3px 3px 0 rgba(255, 255, 255, 0.45) !important;
+}
 </style>

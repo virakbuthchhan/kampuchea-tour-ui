@@ -2,7 +2,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import api,{API_BASE} from '@/services/api';
+import {useAppStore} from "@/stores/appStore";
+
+import api,{API_BASE,apiPath} from '@/services/api';
 
 export const useAuthStore = defineStore('auth', () => {
   // State
@@ -17,13 +19,21 @@ export const useAuthStore = defineStore('auth', () => {
 
   // Actions
   const router = useRouter()
-
+  const appStore = useAppStore()
+  const {showSnackbar} = appStore;
   function setAuth(jwt, userData) {
-    token.value = jwt
-    user.value = userData
     localStorage.setItem('token', jwt)
     localStorage.setItem('user', JSON.stringify(userData))
+
+    // Update reactive refs
+    token.value = jwt
+    user.value = userData
+
+    // Set default Authorization header for future requests
+    api.defaults.headers.common['Authorization'] = `Bearer ${jwt}`
   }
+
+
   function loginWithProvider(provider) {
     window.location.href = `${API_BASE}/auth/${provider}/redirect`;
   }
@@ -59,11 +69,14 @@ export const useAuthStore = defineStore('auth', () => {
 
     return { user, token };
   }
+
   function logout() {
-    return api.post(`${API_BASE}/logout`).then(() => {
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
+    return api.post(apiPath.logout).then((res) => {
+      console.log('logout',res);
+      setAuth(null,null);
       delete api.defaults.headers.common['Authorization'];
+      showSnackbar(res.data.message, "success",3000);
+      router.push('/auth/login');
     });
   }
 
@@ -82,7 +95,7 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
 
     try {
-      const response = await api.post('/auth/login', credentials)
+      const response = await api.post(apiPath.login, credentials)
       const { token: jwt, user: userData } = response.data
 
       setAuth(jwt, userData)
@@ -102,12 +115,12 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
 
     try {
-      const response = await api.post('/auth/register', userData)
+      const response = await api.post(apiPath.register, userData)
       const { token: jwt, user: newUser } = response.data
 
       setAuth(jwt, newUser)
 
-      router.push('/dashboard')
+      await router.push('/dashboard')
     } catch (err) {
       error.value = err.response?.data?.message || 'Registration failed'
       console.error('Register error:', err)
@@ -121,12 +134,15 @@ export const useAuthStore = defineStore('auth', () => {
     if (!token.value) return
 
     try {
-      const response = await api.get('/auth/me')
-      user.value = response.data
-      localStorage.setItem('user', JSON.stringify(response.data))
+      appStore.setLoading(true)
+      const response = await api.get(apiPath.me)
+      user.value = response.data.data
+      localStorage.setItem('user', JSON.stringify(response.data.data))
     } catch (err) {
       console.warn('Failed to fetch profile. Logging out...', err)
-      logout()
+      await logout()
+    }finally {
+      appStore.setLoading(false)
     }
   }
 
@@ -137,7 +153,7 @@ export const useAuthStore = defineStore('auth', () => {
       // Keep same user, update token
       setAuth(newToken, user.value)
     } catch (err) {
-      logout()
+      await logout()
     }
   }
 
@@ -152,7 +168,7 @@ export const useAuthStore = defineStore('auth', () => {
     // Getters
     isAuthenticated,
     currentUser,
-
+    setAuth,
     // Actions
     login,
     register,

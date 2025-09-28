@@ -19,6 +19,6 @@ export default createVuetify({
     VFileUpload
   },
   theme: {
-    defaultTheme: localStorage.getItem('theme') || 'light',
+    defaultTheme: localStorage.getItem('theme') || 'dark',
   },
 })

@@ -11,6 +11,7 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    config.headers['Accept-Language'] = localStorage.getItem('i18nextLng') || 'kh';
     return config;
   },
   (error) => Promise.reject(error)
@@ -25,10 +26,24 @@ api.interceptors.response.use(
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       // Optionally redirect to login
-      window.location.href = '/login';
+      window.location.href = '/';
     }
     return Promise.reject(error);
   }
 );
-export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const apiVersion = 'v1.0.0';
+export const apiPath = {
+  github: '/auth/github/redirect',
+  google: '/auth/google/redirect',
+  login: apiVersion+'/auth/login',
+  verifyOtp: apiVersion+'/verify-otp',
+  logout: apiVersion+'/auth/logout',
+  register: apiVersion+'/auth/register',
+  requestReset: apiVersion+'/auth/request-reset',
+  me: apiVersion+'/auth/me',
+  uniqueCheck: apiVersion+'/validation/unique-check',
+  tokenCheck: apiVersion+'/validation/token-check',
+  broadcaster: apiVersion+'/broadcasting/auth',
+}
 export default api;

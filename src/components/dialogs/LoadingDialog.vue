@@ -1,9 +1,12 @@
 <script setup>
 import {ref, computed, watch} from 'vue'
-import {useAppStore} from "@/stores/app.js";
+import {useAppStore} from "@/stores/appStore";
 
 const appStore = useAppStore();
 const loading = computed(() => appStore.loading);
+const snackbar = computed(() => appStore.snackbar);
+const message = computed(() => appStore.message);
+const color = computed(() => appStore.color);
 </script>
 
 <template>
@@ -12,6 +15,25 @@ const loading = computed(() => appStore.loading);
       <v-progress-linear indeterminate></v-progress-linear>
     </div>
   </div>
+  <v-snackbar
+    variant="elevated"
+    :color="color"
+    location="top right"
+    v-model="snackbar"
+    :timeout="4000"
+    elevation="2"
+    multi-line
+  >
+    {{ message }}
+
+    <template v-slot:actions>
+      <v-btn
+        variant="text"
+      >
+        {{$t('page.close')}}
+      </v-btn>
+    </template>
+  </v-snackbar>
 </template>
 <style scoped>
 .overlay {
