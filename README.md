@@ -57,6 +57,16 @@ To build your project for production, use:
 yarn build
 ```
 
+
+### Building for Production via docker
+
+To build your project for production, use:
+
+```bash
+docker network create web && docker compose up -d --build
+```
+
+
 (Repeat for npm, pnpm, and bun with respective commands.)
 
 Once the build process is completed, your application will be ready for deployment in a production environment.

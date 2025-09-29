@@ -51,7 +51,6 @@
   </v-menu>
 </template>
 <script setup lang="ts">
-import {defineProps} from "vue"
 import {useRouter} from 'vue-router';
 import {useAuthStore} from "@/stores/useAuthStore";
 
